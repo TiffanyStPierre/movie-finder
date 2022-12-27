@@ -24,12 +24,22 @@
         <p class="header-subtitle">We choose the movie so you don't have to</p>
     </header>
     <section class="movie-generator">
+        <div id="type-selector">
+            <p class="type-instructions">Would you like to search for a movie or TV show?</p>
+            <button class="btn" id="movie-button">Movie</button>
+            <button class="btn" id="tv-button">TV Show</button>
+        </div>
         <form id="genre-selector">
             <label>Choose a genre:</label>
             <select name="genres" id="genres">
             </select>
         </form>
-        <button id="get-movies">Get Movies</button>
+        <button id="get-movies" class="btn">Get Movies</button>
+    </section>
+    <section class="movie-info">
+        <div id="movie-poster"></div>
+        <div id="movie-text"></div>
+        <div id="movie-rating"></div>
     </section>
 </body>
 
