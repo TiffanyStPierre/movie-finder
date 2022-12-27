@@ -1,7 +1,12 @@
 
+/*control C to leave netlify dev*/
+
 const movieButton = document.getElementById('movie-button');
 const tvButton = document.getElementById('tv-button');
-
+const retrieveButton = document.getElementById('retrieve-button');
+const formLabel = document.getElementById('form-label');
+retrieveButton.innerHTML = "Display Shows";
+formLabel.innerHTML = "Choose a genre:";
 
 /* Populate genre selector dropdown list for movie or tv genres*/
 
@@ -32,6 +37,8 @@ const getMovieGenres = async() => {
                 const jsonResponse = await response.json();
                 const genres = jsonResponse.genres;
                 populateGenreSelector(genres);
+                formLabel.innerHTML = "Choose a movie genre:";
+                retrieveButton.innerHTML = "Display Movies";
             }
 
     } catch (e) {
@@ -51,6 +58,8 @@ const getTvGenres = async() => {
                 const jsonResponse = await response.json();
                 const genres = jsonResponse.genres;
                 populateGenreSelector(genres);
+                formLabel.innerHTML = "Choose a TV show genre:";
+                retrieveButton.innerHTML = "Display TV Shows";
             }
 
     } catch (e) {
