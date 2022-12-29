@@ -4,30 +4,12 @@
 const movieButton = document.getElementById('movie-button');
 const tvButton = document.getElementById('tv-button');
 const retrieveButton = document.getElementById('retrieve-button');
-const formLabel = document.getElementById('form-label');
+let mediaType = "";
 retrieveButton.innerHTML = "Display Shows";
-formLabel.innerHTML = "Choose a genre:";
 
-/* Populate genre selector dropdown list for movie or tv genres*/
+/* Retrieve movie list with API call*/
 
-const populateGenreSelector = (genres) => {
-    const select = document.getElementById('genres')
-
-    while (select.hasChildNodes()) {
-        select.removeChild(select.firstChild);
-    }
-
-    for (const genre of genres) {
-        let option = document.createElement("option");
-        option.value = genre.id;
-        option.text = genre.name;
-        select.appendChild(option);
-    }
-};
-
-/* Retrieve movie genres with API call*/
-
-const getMovieGenres = async() => {
+const getMovies = async() => {
     
     let media = 'movie';
 
@@ -35,10 +17,10 @@ const getMovieGenres = async() => {
         const response = await fetch(`/.netlify/functions/api?media=${media}`);
             if (response.ok) {
                 const jsonResponse = await response.json();
-                const genres = jsonResponse.genres;
-                populateGenreSelector(genres);
-                formLabel.innerHTML = "Choose a movie genre:";
+                const movies = jsonResponse.results;
                 retrieveButton.innerHTML = "Display Movies";
+                mediaType = "movie";
+                console.log(movies);
             }
 
     } catch (e) {
@@ -46,9 +28,9 @@ const getMovieGenres = async() => {
     }
 };
 
-/* Retrieve TV genres with API call*/
+/* Retrieve TV show list with API call*/
 
-const getTvGenres = async() => {
+const getTvShows = async() => {
     
     let media = 'tv';
 
@@ -56,10 +38,10 @@ const getTvGenres = async() => {
         const response = await fetch(`/.netlify/functions/api?media=${media}`);
             if (response.ok) {
                 const jsonResponse = await response.json();
-                const genres = jsonResponse.genres;
-                populateGenreSelector(genres);
-                formLabel.innerHTML = "Choose a TV show genre:";
+                const tvShows = jsonResponse.results;
                 retrieveButton.innerHTML = "Display TV Shows";
+                mediaType = "tv";
+                console.log(tvShows);
             }
 
     } catch (e) {
@@ -69,5 +51,7 @@ const getTvGenres = async() => {
 
 /*Event listeners for Movie & TV Show buttons for genre retrieval using API*/
 
-movieButton.addEventListener('click', getMovieGenres);
-tvButton.addEventListener('click', getTvGenres);
+movieButton.addEventListener('click', getMovies);
+tvButton.addEventListener('click', getTvShows);
+
+

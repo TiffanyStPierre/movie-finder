@@ -60,13 +60,3 @@ h1 {
 .selector-btn {
     margin: 3% 4% 5% 4%;
 }
-
-#form-label {
-    font-size: 1.75rem;
-    font-weight: 500;
-}
-
-#genres {
-    font-size: 1.4rem;
-    font-weight: 400;
-}
