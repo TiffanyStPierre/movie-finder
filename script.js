@@ -37,8 +37,8 @@ const getTvShows = async() => {
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const tvShows = jsonResponse.results;
-                retrieveButton.innerHTML = "Display TV Shows";
                 mediaType = "tv";
+                console.log(tvShows);
                 return tvShows;
             }
 
@@ -46,7 +46,6 @@ const getTvShows = async() => {
         console.log(e);
     }
 };
-
 
 
 /* Get a random movie from the movie list */
@@ -97,6 +96,56 @@ const createMovieOverview = (overview) => {
     return overviewParagraph;
 }
 
+/* Create HTML for movie rating */
+
+const createMovieRating = (vote_average) => {
+    const ratingParagraph = document.createElement('p');
+    ratingParagraph.setAttribute('id', 'movieRating');
+    ratingParagraph.innerHTML = `Average Viewer Rating: ${vote_average}/10`;
+
+    return ratingParagraph;
+}
+
+/* Create HTML for movie release date */
+
+const createMovieReleaseDate = (release_date) => {
+    const releaseDateParagraph = document.createElement('p');
+    releaseDateParagraph.setAttribute('id', 'movieReleaseDate');
+    releaseDateParagraph.innerHTML = `Release Date: ${release_date}`;
+
+    return releaseDateParagraph;
+}
+
+/* Create HTML for media type */
+
+const createMediaType = (type) => {
+    const mediaTypeParagraph = document.createElement('p');
+    mediaTypeParagraph.setAttribute('id', 'mediaType');
+    mediaTypeParagraph.innerHTML = type;
+
+    return mediaTypeParagraph;
+}
+
+/* Create HTML for TV show name */
+
+const createTvShowName = (name) => {
+    const nameHeader = document.createElement('h2');
+    nameHeader.setAttribute('id', 'tvShowName');
+    nameHeader.innerHTML = name;
+
+    return nameHeader;
+}
+
+/* Create HTML for TV show first air date */
+
+const createFirstAirDate = (first_air_date) => {
+    const firstAirDateParagraph = document.createElement('p');
+    firstAirDateParagraph.setAttribute('id', 'firstAirDate');
+    firstAirDateParagraph.innerHTML = `First Air Date: ${first_air_date}`;
+
+    return firstAirDateParagraph;
+}
+
 /* Clear the current movie from the screen */
 
 const clearCurrentMovie = () => {
@@ -123,15 +172,51 @@ const displayMovie = async () => {
 
     const moviePoster = createMoviePoster(randomMovie.poster_path);
     const titleHeader = createMovieTitle(randomMovie.title);
+    const mediaType = createMediaType("Movie");
     const overviewText = createMovieOverview(randomMovie.overview);
+    const ratingText = createMovieRating(randomMovie.vote_average);
+    const releaseDateText = createMovieReleaseDate(randomMovie.release_date);
 
     moviePosterDiv.appendChild(moviePoster);
     movieTextDiv.appendChild(titleHeader);
+    movieTextDiv.appendChild(mediaType);
     movieTextDiv.appendChild(overviewText);
+    movieTextDiv.appendChild(ratingText);
+    movieTextDiv.appendChild(releaseDateText);
+}
+
+/* Create HTML to display the random TV show */
+
+const displayTvShow = async () => {
+    
+    const moviePosterDiv = document.getElementById('moviePoster');
+    const movieTextDiv = document.getElementById('movieText');
+
+    const movieInfo = document.getElementById("movieInfo");
+    if (movieInfo.childNodes.length > 0) {
+        clearCurrentMovie();
+    }
+
+    const tvShows = await getTvShows();
+    const randomTvShow = getRandomTvShow(tvShows);
+
+    const moviePoster = createMoviePoster(randomTvShow.poster_path);
+    const nameHeader = createTvShowName(randomTvShow.name);
+    const mediaType = createMediaType("TV Show");
+    const overviewText = createMovieOverview(randomTvShow.overview);
+    const ratingText = createMovieRating(randomTvShow.vote_average);
+    const firstAirDateText = createFirstAirDate(randomTvShow.first_air_date);
+
+    moviePosterDiv.appendChild(moviePoster);
+    movieTextDiv.appendChild(nameHeader);
+    movieTextDiv.appendChild(mediaType);
+    movieTextDiv.appendChild(overviewText);
+    movieTextDiv.appendChild(ratingText);
+    movieTextDiv.appendChild(firstAirDateText);
 }
 
 
 /*Event listeners for Movie & TV Show buttons for movie data retrieval using API*/
 
 movieButton.addEventListener('click', displayMovie);
-tvButton.addEventListener('click', getTvShows);
+tvButton.addEventListener('click', displayTvShow);

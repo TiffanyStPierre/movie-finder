@@ -31,7 +31,7 @@ h1 {
 }
 
 .movie-generator {
-    margin: 3% auto;
+    margin: 3% auto 1% auto;
     width: 75%;
     text-align: center;
 }
@@ -42,7 +42,7 @@ h1 {
 }
 
 .btn {
-    margin: 3%;
+    margin: 3% 4% 2% 4%;
     padding: 0.5% 2%;
     font-size: 1.5rem;
     color:#ffffff;
@@ -57,14 +57,16 @@ h1 {
     background-color: #027FC0;
 }
 
-.selector-btn {
-    margin: 3% 4% 3% 4%;
+#intro {
+    margin-top: 2%;
+    font-size: 1.2rem;
+    line-height: 1.3;
 }
 
 #movieInfo {
     display: flex;
     justify-content: space-around;
-    max-width: 60%;
+    max-width: 85%;
     margin: 0 auto 5% auto;
 }
 
@@ -75,21 +77,38 @@ h1 {
 
 #movieText p {
     font-size: 1.3rem;
-    line-height: 1.2;
+    line-height: 1.3;
+    max-width: 80%;
 }
 
 #moviePoster {
     width: 50%;
     display: flex;
+    justify-content: right;
+}
+
+#movieRating,
+#movieReleaseDate,
+#firstAirDate
+{
+    font-weight: 500;
+    margin-top: 4%;
 }
 
 img {
     width: 100%;
-    margin: 0 auto;
+    margin: 5%;
     align-self: right;
 }
 
 h2 {
-    font-size: 2.5rem;
-    padding-bottom: 5%;
+    font-size: 2.25rem;
+    padding-bottom: 1.5%;
+    font-weight: 500;
+}
+
+#mediaType {
+    padding-bottom: 4%;
+    font-weight: 500;
+    font-size: 1.5rem;
 }

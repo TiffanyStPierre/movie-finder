@@ -7,7 +7,7 @@ const handler = async (event) => {
     const baseUrl = "https://api.themoviedb.org/3"
 
     const API_SECRET = process.env.API_SECRET
-    const url = `${baseUrl}/discover/${media}?api_key=${API_SECRET}&language=en-US&sort_by=popularity.desc`;
+    const url = `${baseUrl}/trending/${media}/week?api_key=${API_SECRET}`;
 
     try {
       const { data } = await axios.get(url)
