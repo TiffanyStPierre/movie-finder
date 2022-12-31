@@ -51,7 +51,7 @@ const getTvShows = async() => {
 /* Get a random movie from the movie list */
 
 const getRandomMovie = (movies) => {
-    const randomIndex = Math.floor(Math.random() * 20);
+    const randomIndex = Math.floor(Math.random() * movies.length);
     const randomMovie = movies[randomIndex];
     return randomMovie;
 }
@@ -59,7 +59,7 @@ const getRandomMovie = (movies) => {
 /* Get a random TV show from the TV show list */
 
 const getRandomTvShow = (tvShows) => {
-    const randomIndex = Math.floor(Math.random() * 20);
+    const randomIndex = Math.floor(Math.random() * tvShows.length);
     const randomTvShow = tvShows[randomIndex];
     return randomTvShow;
 }

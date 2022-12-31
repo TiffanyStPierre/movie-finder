@@ -18,13 +18,13 @@ const handler = async (event) => {
       }
 
     } catch (error) {
-      const { status, statusText, headers, data } = error.response;
+      console.log(error);
       return {
-        statusCode: status,
-        body: JSON.stringify({status, statusText, headers, data})
-      }
+        statusCode: 500,
+        body: JSON.stringify({error: 'Failed fetching data'})
+      };
     }
 
-}
+};
 
 module.exports = { handler }
