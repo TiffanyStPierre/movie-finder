@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 
-const handler = async (event) => {
+exports.handler = async (event) => {
     const {media} = event.queryStringParameters
     const baseUrl = "https://api.themoviedb.org/3"
 
@@ -18,13 +18,16 @@ const handler = async (event) => {
       }
 
     } catch (error) {
-      console.log(error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({error: 'Failed fetching data'})
-      };
+      if(error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      } else if (error.request) {
+        console.log(error.request);
+      } else {
+        console.log('Error', error.message);
+      }
     }
 
 };
 
-module.exports = { handler }

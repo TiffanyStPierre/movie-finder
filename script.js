@@ -3,21 +3,18 @@
 
 const movieButton = document.getElementById('movie-button');
 const tvButton = document.getElementById('tv-button');
-let mediaType = "";
-
 
 /* Retrieve movie list with API call*/
 
 const getMovies = async() => {
     
-    let media = 'movie';
+    const media = 'movie';
 
     try {
         const response = await fetch(`/.netlify/functions/api?media=${media}`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const movies = jsonResponse.results;
-                mediaType = "movie";
                 return movies;
             }
 
@@ -30,15 +27,13 @@ const getMovies = async() => {
 
 const getTvShows = async() => {
     
-    let media = 'tv';
+    const media = 'tv';
 
     try {
         const response = await fetch(`/.netlify/functions/api?media=${media}`);
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const tvShows = jsonResponse.results;
-                mediaType = "tv";
-                console.log(tvShows);
                 return tvShows;
             }
 
@@ -47,11 +42,10 @@ const getTvShows = async() => {
     }
 };
 
-
 /* Get a random movie from the movie list */
 
 const getRandomMovie = (movies) => {
-    const randomIndex = Math.floor(Math.random() * movies.length);
+    const randomIndex = Math.floor(Math.random() * 20);
     const randomMovie = movies[randomIndex];
     return randomMovie;
 }
@@ -59,7 +53,7 @@ const getRandomMovie = (movies) => {
 /* Get a random TV show from the TV show list */
 
 const getRandomTvShow = (tvShows) => {
-    const randomIndex = Math.floor(Math.random() * tvShows.length);
+    const randomIndex = Math.floor(Math.random() * 20);
     const randomTvShow = tvShows[randomIndex];
     return randomTvShow;
 }
