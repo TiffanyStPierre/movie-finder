@@ -7,11 +7,9 @@ const tvButton = document.getElementById('tv-button');
 /* Retrieve movie list with API call*/
 
 const getMovies = async() => {
-    
-    const media = 'movie';
 
     try {
-        const response = await fetch(`/.netlify/functions/api?media=${media}`);
+        const response = await fetch('/.netlify/functions/api?media=movie');
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const movies = jsonResponse.results;
@@ -26,11 +24,9 @@ const getMovies = async() => {
 /* Retrieve TV show list with API call*/
 
 const getTvShows = async() => {
-    
-    const media = 'tv';
 
     try {
-        const response = await fetch(`/.netlify/functions/api?media=${media}`);
+        const response = await fetch('/.netlify/functions/api?media=tv');
             if (response.ok) {
                 const jsonResponse = await response.json();
                 const tvShows = jsonResponse.results;
