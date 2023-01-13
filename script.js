@@ -46,7 +46,6 @@ const getTvShows = async() => {
 window.onload = async function() {
     await getMovies();
     await getTvShows();
-    console.log(movies);
 }
 
 /* Get a random movie from the movie list */
