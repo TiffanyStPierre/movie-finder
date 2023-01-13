@@ -4,6 +4,9 @@
 const movieButton = document.getElementById('movie-button');
 const tvButton = document.getElementById('tv-button');
 
+let movies;
+let tvShows;
+
 /* Retrieve movie list with API call*/
 
 const getMovies = async() => {
@@ -12,7 +15,7 @@ const getMovies = async() => {
         const response = await fetch('/.netlify/functions/api?media=movie');
             if (response.ok) {
                 const jsonResponse = await response.json();
-                const movies = jsonResponse.results;
+                movies = jsonResponse.results;
                 return movies;
             }
 
@@ -29,7 +32,7 @@ const getTvShows = async() => {
         const response = await fetch('/.netlify/functions/api?media=tv');
             if (response.ok) {
                 const jsonResponse = await response.json();
-                const tvShows = jsonResponse.results;
+                tvShows = jsonResponse.results;
                 return tvShows;
             }
 
@@ -37,6 +40,14 @@ const getTvShows = async() => {
         console.log(e);
     }
 };
+
+/* Run both API call functions when the app loads */
+
+window.onload = async function() {
+    await getMovies();
+    await getTvShows();
+    console.log(movies);
+}
 
 /* Get a random movie from the movie list */
 
@@ -157,7 +168,7 @@ const displayMovie = async () => {
         clearCurrentMovie();
     }
 
-    const movies = await getMovies();
+    /*const movies = await getMovies();*/
     const randomMovie = getRandomMovie(movies);
 
     const moviePoster = createMoviePoster(randomMovie.poster_path);
@@ -187,7 +198,7 @@ const displayTvShow = async () => {
         clearCurrentMovie();
     }
 
-    const tvShows = await getTvShows();
+    /*const tvShows = await getTvShows();*/
     const randomTvShow = getRandomTvShow(tvShows);
 
     const moviePoster = createMoviePoster(randomTvShow.poster_path);
