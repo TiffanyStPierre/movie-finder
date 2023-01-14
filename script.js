@@ -46,6 +46,9 @@ const getTvShows = async() => {
 window.onload = async function() {
     await getMovies();
     await getTvShows();
+    if (!movies || !tvShows) {
+        alert("Our apologies, it looks like something went wrong. Please refresh the page and we'll try this again.");
+    }
 }
 
 /* Get a random movie from the movie list */
